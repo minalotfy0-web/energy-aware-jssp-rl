@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "petrirl-moo"
+version = "1.0.0"
+description = "Energy-aware job-shop scheduling with Petri nets and multi-objective reinforcement learning"
+requires-python = ">=3.10"
+dependencies = ["numpy", "gymnasium", "stable-baselines3", "sb3-contrib", "torch", "pandas", "matplotlib"]
+
+[tool.setuptools.packages.find]
+include = ["petrirl*"]
+
+[tool.setuptools.package-data]
+"petrirl.common" = ["instances/*/*"]

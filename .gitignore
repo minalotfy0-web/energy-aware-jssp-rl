@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv*/
+logs/
+renders/
+agents/
+.spyproject/
+.ipynb_checkpoints/
+*.egg-info/
