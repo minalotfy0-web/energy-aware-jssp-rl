@@ -1,5 +1,8 @@
 # Energy-Aware Job-Shop Scheduling with Multi-Objective RL
 
+[![tests](https://github.com/minalotfy0-web/energy-aware-jssp-rl/actions/workflows/tests.yml/badge.svg)](https://github.com/minalotfy0-web/energy-aware-jssp-rl/actions/workflows/tests.yml)
+![Python 3.12](https://img.shields.io/badge/python-3.12-blue)
+
 **Can two specialist RL agents be combined at inference time to cover a whole energy-vs-productivity
 trade-off, instead of training one agent per preference?**
 
@@ -103,6 +106,13 @@ python scripts/train.py --usage-cap 0.1     # energy expert
 python scripts/train.py --usage-cap 1.0     # utilization expert
 ```
 
+Run the tests (environment, pretrained agents, MMAS mixing, Pareto utilities):
+
+```bash
+pip install pytest
+pytest
+```
+
 ### CPU or GPU
 
 Every script takes `--device {auto,cpu,cuda}` (`auto` uses CUDA when available). For a GPU, install
@@ -165,6 +175,7 @@ scripts/
   mmas.py                Mix two experts at inference time
   plot_pareto.py         Pareto fronts + hypervolume
   benchmark_device.py    CPU vs. CUDA speed comparison
+tests/                   pytest suite, run on every push by GitHub Actions
 pretrained/
   experts/               Energy expert (cap 0.1) and utilization expert (cap 1.0)
   scalarized/            One agent per weight 0.1, 0.3, 0.5, 0.7, 1.0
@@ -227,3 +238,4 @@ code into this public repository. Its contribution, reviewed by me:
   scripts, not from the thesis, so they differ slightly from the thesis tables. The choice of
   peak power vs. makespan as plotting objectives was its suggestion.
 - Drafting this README and `NOTICE.md`.
+- Writing the tests (`tests/`) and the GitHub Actions workflow that runs them.

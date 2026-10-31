@@ -14,3 +14,7 @@ include = ["petrirl*"]
 
 [tool.setuptools.package-data]
 "petrirl.common" = ["instances/*/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::UserWarning"]
