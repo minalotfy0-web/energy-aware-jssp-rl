@@ -70,8 +70,8 @@ Sofiene Lassoued and Andreas Schwung (see [Credits](#credits)). My contributions
   linear or Chebyshev scalarization.
 - **MMAS** (`scripts/mmas.py`): mixing two pretrained MaskablePPO policies at the **logits** or the
   **probability** level, with z-score logit normalization against logit dominance and action masking.
-- **Evaluation pipeline**: per-episode metrics (makespan, utilization, energy, cap overshoot),
-  Pareto-front extraction and **hypervolume** comparison (`scripts/plot_pareto.py`).
+- **Evaluation**: per-episode metrics (makespan, utilization, energy, cap overshoot) and
+  Pareto-front comparison of both approaches.
 - **Visualization** (`petrirl/render/plot_moo.py`): Gantt chart combined with the energy profile
   against the cap.
 
@@ -204,3 +204,26 @@ Benchmark instances are from Taillard (1993), Demirkol et al. (1998), and the Pe
 
 **Author:** Mina Lotfy Saad Gergis. Thesis supervised by Sofiene Lassoued, M.Sc., with
 Prof. Dr. Andreas Schwung and Prof. Dr. Dominik Aufderheide.
+
+### How this repository was prepared
+
+The thesis (research question, the MMAS method, environment modifications, reward design, training,
+the pretrained agents, experiments and written thesis) is my own work, completed and graded in 2025.
+The AI assistant described below had no part in it.
+
+After the thesis was graded, I used an AI coding assistant (Claude, by Anthropic) only to turn my thesis
+code into this public repository. Its contribution, reviewed by me:
+
+- Selecting the thesis-era code and agents from my working folders and assembling them here.
+- Cleanup of the environment package: keeping only the multi-objective environment, fixing outdated
+  imports (`distutils`, a removed matplotlib function, optional `graphviz`/`IPython`), and turning the
+  hard-coded reward mode into a `scalarization` parameter. The Chebyshev variant now penalizes
+  `1 − utilization` instead of `utilization`.
+- Rewriting my experiment scripts as command-line tools (`scripts/`). This included the `--device`
+  option, the CPU/CUDA benchmark, and hypervolume in `plot_pareto.py`.
+- Two changes to MMAS: the logit z-score uses only valid actions, and invalid actions are masked after
+  mixing.
+- Re-running all evaluations. The results, tables and Pareto plot above come from this repository's
+  scripts, not from the thesis, so they differ slightly from the thesis tables. The choice of
+  peak power vs. makespan as plotting objectives was its suggestion.
+- Drafting this README and `NOTICE.md`.
